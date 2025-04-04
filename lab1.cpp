@@ -5,7 +5,6 @@ using namespace std;
 void question1() {
     int a = 3, b = 4;
     cout << "Sum: " << a + b << endl;
-
     cout << "Concatenation: Hi There" << endl;
 }
 
@@ -76,11 +75,38 @@ void question6() {
     cout << "Reversed number: " << rev << endl;
 }
 
+// Question 7: Password check
+void question7() {
+    char password[100];
+    cout << "Enter password: ";
+    cin >> password;
+
+    int length = 0, upper = 0, lower = 0, digit = 0, special = 0;
+    for (int i = 0; password[i] != '\0'; i++) {
+        length++;
+        if (password[i] >= 'A' && password[i] <= 'Z') upper = 1;
+        else if (password[i] >= 'a' && password[i] <= 'z') lower = 1;
+        else if (password[i] >= '0' && password[i] <= '9') digit = 1;
+        else special = 1;
+    }
+
+    if (length >= 8 && upper && lower && digit && special)
+        cout << "Strong Password" << endl;
+    else {
+        cout << "Weak Password" << endl;
+        if (length < 8) cout << "- Must be at least 8 characters\n";
+        if (!upper) cout << "- Missing uppercase letter\n";
+        if (!lower) cout << "- Missing lowercase letter\n";
+        if (!digit) cout << "- Missing digit\n";
+        if (!special) cout << "- Missing special character\n";
+    }
+}
+
 int main() {
     char repeat;
     int choice;
     do {
-        cout << "Choose question (1-6): ";
+        cout << "Choose question (1-7): ";
         cin >> choice;
 
         if (choice == 1)
@@ -95,6 +121,8 @@ int main() {
             question5();
         else if (choice == 6)
             question6();
+        else if (choice == 7)
+            question7();
         else
             cout << "Invalid choice." << endl;
 
@@ -105,3 +133,4 @@ int main() {
     cout << "Goodbye!" << endl;
     return 0;
 }
+
